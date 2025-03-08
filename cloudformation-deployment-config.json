@@ -1,8 +1,8 @@
 {
-    "StackName": "MyAppStack",
-    "TemplateFile": "cloudformation-codepipeline",
+    "StackName": "test",
+    "TemplateFile": "cloudformation-codepipeline.yaml",
     "Parameters": {
-      "Environment": "production",
+      "Environment": "dev",
       "BucketName": "myapp-deployment-bucket"
     },
     "Capabilities": [
@@ -11,6 +11,6 @@
     ],
     "Tags": {
       "Project": "MyApp",
-      "Owner": "Seongmin Kim"
+      "Owner": ""
     }
   }
