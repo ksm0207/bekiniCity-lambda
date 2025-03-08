@@ -1,0 +1,2 @@
+# bekiniCity-lambda
+- AWS lambda
