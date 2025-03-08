@@ -38,7 +38,7 @@ Resources:
   MyCodePipeline:
     Type: AWS::CodePipeline::Pipeline
     Properties:
-      Name: MyLambdaPipeline
+      Name: LambdaPipelineStack
       RoleArn: !Ref CloudFormationExecutionRoleArn  # ✅ 기존 IAM Role 사용
       ArtifactStore:
         Type: S3
