@@ -1,31 +1,26 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: AWS CodePipeline을 CloudFormation으로 생성 (기존 IAM Role 사용)
+Description: AWS CodePipeline & CodeBuild 자동 생성 (IAM Role 사용)
 
 Parameters:
   GitHubOwner:
     Type: String
     Default: "ksm0207"
-    Description: "GitHub 사용자명 또는 조직명"
 
   GitHubRepo:
     Type: String
     Default: "bekiniCity-lambda"
-    Description: "GitHub 리포지토리 이름"
 
   GitHubBranch:
     Type: String
     Default: "dev"
-    Description: "배포할 브랜치"
 
   GitHubOAuthToken:
-    Type: String
-    NoEcho: true
-    Description: "GitHub OAuth 토큰 (CodePipeline에서 사용)"
+    Type: AWS::SSM::Parameter
+    Default: "/codepipeline/github/token"
 
   CloudFormationExecutionRoleArn:
     Type: String
-    Description: "CloudFormation이 사용할 IAM Role ARN"
-    Default: "arn:aws:iam::772776933351:role/CloudFormationExecutionRole"  # IAM 역할 ARN을 여기에 입력
+    Default: "arn:aws:iam::772776933351:role/CloudFormationExecutionRole"
 
 Resources:
   # 🚀 S3 Bucket (빌드 아티팩트 저장소)
@@ -34,12 +29,44 @@ Resources:
     Properties:
       BucketName: !Sub "cloud-formation-lambda-bucket-${AWS::AccountId}"
 
-  # 🚀 AWS CodePipeline (자동화된 배포 파이프라인)
+  # 🚀 CodeBuild 프로젝트 생성 (자동 빌드)
+  LambdaCodeBuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: "bekiniCity-lambda"
+      ServiceRole: !Ref CloudFormationExecutionRoleArn
+      Artifacts:
+        Type: S3
+        Location: !Ref PipelineArtifactsBucket
+      Environment:
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: "aws/codebuild/standard:5.0"
+        Type: LINUX_CONTAINER
+      Source:
+        Type: CODEPIPELINE
+      TimeoutInMinutes: 10
+      BuildSpec: |
+        version: 0.2
+        phases:
+          install:
+            runtime-versions:
+              python: 3.9
+          build:
+            commands:
+              - echo "Zipping Lambda function..."
+              - zip -r lambda_function.zip .
+              - mv lambda_function.zip /codebuild/output/
+        artifacts:
+          files:
+            - lambda_function.zip
+          discard-paths: yes
+
+  # 🚀 AWS CodePipeline (자동 배포 파이프라인)
   MyCodePipeline:
     Type: AWS::CodePipeline::Pipeline
     Properties:
       Name: LambdaPipelineStack
-      RoleArn: !Ref CloudFormationExecutionRoleArn  # ✅ 기존 IAM Role 사용
+      RoleArn: !Ref CloudFormationExecutionRoleArn
       ArtifactStore:
         Type: S3
         Location: !Ref PipelineArtifactsBucket
@@ -73,7 +100,7 @@ Resources:
               OutputArtifacts:
                 - Name: BuildOutput
               Configuration:
-                ProjectName: "bekiniCity-lambda"
+                ProjectName: !Ref LambdaCodeBuildProject
 
         - Name: Deploy
           Actions:
@@ -84,7 +111,7 @@ Resources:
                 Provider: Lambda
                 Version: "1"
               Configuration:
-                FunctionName: "lambda_function"
+                FunctionName: "bekiniCityLambda"
                 S3Bucket: !Ref PipelineArtifactsBucket
                 S3ObjectKey: "lambda_function.zip"
               InputArtifacts:
