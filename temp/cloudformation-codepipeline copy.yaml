@@ -82,7 +82,7 @@ Resources:
   MyCodePipeline:
     Type: AWS::CodePipeline::Pipeline
     Properties:
-      Name: MyLambdaPipeline
+      Name: LambdaPipelineStack
       RoleArn: !GetAtt CodePipelineIAMRole.Arn
       ArtifactStore:
         Type: S3
