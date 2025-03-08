@@ -1,0 +1,135 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: CloudFormation을 이용한 AWS CodePipeline 자동 생성
+
+Parameters:
+  GitHubOwner:
+    Type: String
+    Description: "GitHub 사용자명 또는 조직명"
+    Default: "ksm0207"
+
+  GitHubRepo:
+    Type: String
+    Description: "GitHub 리포지토리 이름"
+    Default: "bekiniCity-lambda"
+
+  GitHubBranch:
+    Type: String
+    Description: "배포할 브랜치"
+    Default: "dev"
+
+  GitHubOAuthToken:
+    Type: String
+    Description: "GitHub OAuth 토큰 (CodePipeline에서 사용)"
+    NoEcho: true
+
+Resources:
+
+  # 🚀 S3 Bucket (빌드 아티팩트 저장소)
+  PipelineArtifactsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      #BucketName: !Sub "my-pipeline-artifacts-bucket-${AWS::AccountId}"
+      BucketName: !Sub "cloud-formation-lambda-bucket-${AWS::AccountId}"
+
+  # 🚀 IAM Role for CodePipeline
+  CodePipelineIAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: CloudFormationExecutionRole
+      #RoleName: CodePipelineLambdaRole
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: 
+                - codepipeline.amazonaws.com
+            Action: "sts:AssumeRole"
+      Policies:
+        - PolicyName: CodePipelinePolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:*
+                  - codebuild:*
+                  - lambda:*
+                  - codeconnections:UseConnection
+                  - codeconnections:GetConnection
+                Resource: "*"
+
+  # 🚀 AWS CodeBuild Project
+  LambdaCodeBuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: LambdaBuildProject
+      ServiceRole: !GetAtt CodePipelineIAMRole.Arn
+      Artifacts:
+        Type: S3
+        Location: !Ref PipelineArtifactsBucket
+      Environment:
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: "aws/codebuild/standard:5.0"
+        Type: LINUX_CONTAINER
+      Source:
+        Type: GITHUB
+        Location: !Sub "https://github.com/ksm0207/bekiniCity-lambda.git"
+        #Location: !Sub "https://github.com/${GitHubOwner}/${GitHubRepo}.git"
+      TimeoutInMinutes: 10
+
+  # 🚀 AWS CodePipeline
+  MyCodePipeline:
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      Name: LambdaPipelineStack
+      RoleArn: !GetAtt CodePipelineIAMRole.Arn
+      ArtifactStore:
+        Type: S3
+        Location: !Ref "cloud-formation-lambda-bucket-${AWS::AccountId}"
+      Stages:
+        - Name: Source
+          Actions:
+            - Name: GitHubSource
+              ActionTypeId:
+                Category: Source
+                Owner: ThirdParty
+                Provider: GitHub
+                Version: "1"
+              Configuration:
+                Owner: !Ref ksm0207
+                Repo: !Ref bekiniCity-lambda
+                Branch: !Ref dev
+                OAuthToken: !Ref GitHubOAuthToken
+              OutputArtifacts:
+                - Name: SourceOutput
+
+        - Name: Build
+          Actions:
+            - Name: BuildLambda
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Provider: CodeBuild
+                Version: "1"
+              InputArtifacts:
+                - Name: SourceOutput
+              OutputArtifacts:
+                - Name: BuildOutput
+              Configuration:
+                ProjectName: !Ref LambdaCodeBuildProject
+
+        - Name: Deploy
+          Actions:
+            - Name: DeployLambda
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Provider: Lambda
+                Version: "1"
+              Configuration:
+                FunctionName: "lambda_function"
+                S3Bucket: !Ref "cloud-formation-lambda-bucket-${AWS::AccountId}"
+                S3ObjectKey: "lambda_function.zip" # Lambda/FirstApp_CFT/lambda_function.py 
+              InputArtifacts:
+                - Name: BuildOutput
