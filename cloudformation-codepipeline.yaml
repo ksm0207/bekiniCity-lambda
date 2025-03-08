@@ -111,7 +111,7 @@ Resources:
                 Provider: Lambda
                 Version: "1"
               Configuration:
-                FunctionName: "bekiniCityLambda"
+                FunctionName: "lambda_function"
                 S3Bucket: !Ref PipelineArtifactsBucket
                 S3ObjectKey: "lambda_function.zip"
               InputArtifacts:
