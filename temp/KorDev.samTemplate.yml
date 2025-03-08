@@ -1,0 +1,2297 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: "AWS::Serverless-2016-10-31"
+Description: An AWS Serverless Specification template describing your function.
+
+Globals:
+  Api:
+    # enable CORS; to make more specific, change the origin wildcard
+    # to a particular domain name, e.g. "'www.example.com'"
+    Cors:
+      AllowMethods: "'*'"
+      AllowHeaders: "'*'"
+      AllowOrigin: "'*'"
+
+Resources:
+  KorDevEventMaskPromotionAbo:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Mask_Promotion_Abo_CFT.zip
+      FunctionName: "KorDev_Event_Mask_Promotion_Abo_CFT"
+      Description: "KorDev_Event_Lambda_01"
+      MemorySize: 128
+      Timeout: 20
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /mask-promotion/main
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventMaskPromotionInit:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Mask_Promotion_Init_CFT.zip
+      FunctionName: "KorDev_Event_Mask_Promotion_Init_CFT"
+      Description: "KorDev_Event_Lambda_02"
+      MemorySize: 128
+      Timeout: 20
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /mask-promotion/confirm
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventMaskPromotionOrder:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Mask_Promotion_Order_CFT.zip
+      FunctionName: "KorDev_Event_Mask_Promotion_Order_CFT"
+      Description: "KorDev_Event_Lambda_03"
+      MemorySize: 128
+      Timeout: 20
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /mask-promotion/order
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventMaskPromotionReservation:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Mask_Promotion_Reservation_CFT.zip
+      FunctionName: "KorDev_Event_Mask_Promotion_Reservation_CFT"
+      Description: "KorDev_Event_Lambda_04"
+      MemorySize: 128
+      Timeout: 20
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /mask-promotion/reservation
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventMaskPromotionTime:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Mask_Promotion_Time_CFT.zip
+      FunctionName: "KorDev_Event_Mask_Promotion_Time_CFT"
+      Description: "KorDev_Event_Lambda_05"
+      MemorySize: 128
+      Timeout: 20
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /mask-promotion/schedule
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventWasteGlassBottle:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_WasteGlassBottle_CFT.zip
+      FunctionName: "KorDev_Event_WasteGlassBottle_CFT"
+      Description: "KorDev_Event_Lambda_06"
+      MemorySize: 128
+      Timeout: 20
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /waste-glass-bottle
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventSalesDashboard:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Sales_Dashboard_CFT.zip
+      FunctionName: "KorDev_Event_Sales_Dashboard_CFT"
+      Description: "KorDev_Event_Lambda_07"
+      MemorySize: 128
+      Timeout: 20
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /sales/dashboard
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventSalesDashboardEffect:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Sales_Dashboard_EFFECT_CFT.zip
+      FunctionName: "KorDev_Event_Sales_Dashboard_EFFECT_CFT"
+      Description: "KorDev_Event_Lambda_08"
+      MemorySize: 128
+      Timeout: 20
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /sales/dashboard-effect
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  ###
+  KorDevEventAdminList:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_List_CFT.zip
+      FunctionName: "KorDev_Event_Admin_List_CFT"
+      Description: "KorDev_Event_Lambda_09 - Admin"
+      MemorySize: 128
+      Timeout: 20
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/userlist
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminLogin:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Login_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Login_CFT"
+      Description: "KorDev_Event_Lambda_10 - Admin"
+      MemorySize: 128
+      Timeout: 20
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/usercheck
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminLoginToken:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Login_Token_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Login_Token_CFT"
+      Description: "KorDev_Event_Lambda_11 - Admin"
+      MemorySize: 128
+      Timeout: 20
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/loginAuth
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminRegist:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Regist_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Regist_CFT"
+      Description: "KorDev_Event_Lambda_12 - Admin"
+      MemorySize: 128
+      Timeout: 20
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/userregist
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminSerialMaster:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_SerialMaster_CFT.zip
+      FunctionName: "KorDev_Event_Admin_SerialMaster_CFT"
+      Description: "KorDev_Event_Lambda_13 - Admin"
+      MemorySize: 128
+      Timeout: 20
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/serialmaster
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+  KorDevAstationCreation:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_AStation_Coupon_Creation_CFT.zip
+      FunctionName: "KorDev_Event_AStation_Coupon_Creation_CFT"
+      Description: "KorDev_Event_Lambda_21 - Front"
+      MemorySize: 128
+      Timeout: 20
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /astation/create
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevAstationValidation:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_AStation_Coupon_Validation_CFT.zip
+      FunctionName: "KorDev_Event_AStation_Coupon_Validation_CFT"
+      Description: "KorDev_Event_Lambda_22 - Front"
+      MemorySize: 128
+      Timeout: 20
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /astation/validation
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevAstationExchange:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_AStation_Coupon_Exchange_CFT.zip
+      FunctionName: "KorDev_Event_AStation_Coupon_Exchange_CFT"
+      Description: "KorDev_Event_Lambda_23 - Front"
+      MemorySize: 128
+      Timeout: 20
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /astation/exchange
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminAboList:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_AboList_CFT.zip
+      FunctionName: "KorDev_Event_Admin_AboList_CFT"
+      Description: "KorDev_Event_Lambda_14 - Admin"
+      MemorySize: 128
+      Timeout: 30
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/abolist
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminFinance:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Finance_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Finance_CFT"
+      Description: "KorDev_Event_Lambda_15 - Admin"
+      MemorySize: 128
+      Timeout: 30
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/finance
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminFinanceUpload:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Finance_Upload_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Finance_Upload_CFT"
+      Description: "KorDev_Event_Lambda_16 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/financeupload
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+          BUCKET_NAME: event-admin.dev.amway.co.kr
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventNutriliteRelayEvent:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Nutrilite_Relay_Event_CFT.zip
+      FunctionName: "KorDev_Event_Nutrilite_Relay_Event_CFT"
+      Description: "KorDev_Event_Lambda_17 - 릴레이이벤트"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /relay-event
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventCashReport:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Cash_Report_CFT.zip
+      FunctionName: "KorDev_Event_Cash_Report_CFT"
+      Description: "KorDev_Event_Lambda_17 - Admin"
+      MemorySize: 128
+      Timeout: 60
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/cash-report
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+          BUCKET_NAME: event-admin.dev.amway.co.kr
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventCashReportResult:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Cash_Report_Result_CFT.zip
+      FunctionName: "KorDev_Event_Cash_Report_Result_CFT"
+      Description: "KorDev_Event_Lambda_18 - Admin"
+      MemorySize: 128
+      Timeout: 60
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/cash-report-result
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+          BUCKET_NAME: event-admin.dev.amway.co.kr
+          S3_OBJ_PATH: https://event-admin.dev.amway.co.kr/
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAffiliateCardEntryInfo:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_AffiliateCard_Entry_Info_CFT.zip
+      FunctionName: "KorDev_Event_AffiliateCard_Entry_Info_CFT"
+      Description: "KorDev_Event_Lambda_30"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/affiliate-card-entry-info
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventSurveyAboinfo:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Survey_Aboinfo_CFT.zip
+      FunctionName: "KorDev_Event_Survey_Aboinfo_CFT"
+      Description: "KorDev_Event_Lambda_24"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /survey/aboinfo
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventSurveyInfo:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Survey_Info_CFT.zip
+      FunctionName: "KorDev_Event_Survey_Info_CFT"
+      Description: "KorDev_Event_Lambda_25"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /survey/info
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventSurveyRegist:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Survey_Regist_CFT.zip
+      FunctionName: "KorDev_Event_Survey_Regist_CFT"
+      Description: "KorDev_Event_Lambda_26"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /survey/regist
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventSurveyUpdate:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Survey_Update_CFT.zip
+      FunctionName: "KorDev_Event_Survey_Update_CFT"
+      Description: "KorDev_Event_Lambda_27"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /survey/update
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventSurveyDeleteAttachment:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Survey_Delete_Attachment_CFT.zip
+      FunctionName: "KorDev_Event_Survey_Delete_Attachment_CFT"
+      Description: "KorDev_Event_Lambda_28"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /survey/attachment/delete
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventSurveyDownload:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Survey_Download_CFT.zip
+      FunctionName: "KorDev_Event_Survey_Download_CFT"
+      Description: "KorDev_Event_Lambda_61"
+      MemorySize: 512
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /survey/attachment/download
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+#################################### CONCIERGE START
+  KorDevEventAdminConciergeAboInfo:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Concierge_Aboinfo_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Concierge_Aboinfo_CFT"
+      Description: "KorDev_Event_Lambda_29 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/concierge-aboinfo
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminConciergeAdminList:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Concierge_Admin_List_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Concierge_Admin_List_CFT"
+      Description: "KorDev_Event_Lambda_30 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/concierge-admin-list
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminConciergeCoupon:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Concierge_Coupon_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Concierge_Coupon_CFT"
+      Description: "KorDev_Event_Lambda_31 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/concierge-coupon
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+          BUCKET_NAME: event-admin.dev.amway.co.kr
+          S3_OBJ_PATH: https://event-admin.dev.amway.co.kr/
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminConciergeCouponDTL:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Concierge_CouponDTL_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Concierge_CouponDTL_CFT"
+      Description: "KorDev_Event_Lambda_32 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/concierge-couponDTL
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminConciergeLoginInfo:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Concierge_Login_Info_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Concierge_Login_Info_CFT"
+      Description: "KorDev_Event_Lambda_33 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/concierge-login-info
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminConciergeMyCoupon:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Concierge_myCoupon_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Concierge_myCoupon_CFT"
+      Description: "KorDev_Event_Lambda_34 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/concierge-myCoupon
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+        
+  KorDevEventAdminConciergeSendGiftCancel:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Concierge_Send_Gift_Cancel_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Concierge_Send_Gift_Cancel_CFT"
+      Description: "KorDev_Event_Lambda_35 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/concierge-send-gift-cancel
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminConciergeSendGift:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Concierge_Send_Gift_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Concierge_Send_Gift_CFT"
+      Description: "KorDev_Event_Lambda_36 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/concierge-send-gift
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminConciergeUseCoupon:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Concierge_useCoupon_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Concierge_useCoupon_CFT"
+      Description: "KorDev_Event_Lambda_37 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/concierge-useCoupon
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminConciergeUsedList:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Concierge_Used_List_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Concierge_Used_List_CFT"
+      Description: "KorDev_Event_Lambda_38 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/concierge-used-list
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminConciergeAdminTotal:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Concierge_Admin_Total_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Concierge_Admin_Total_CFT"
+      Description: "KorDev_Event_Lambda_39 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/concierge-admin-total
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminOrderHistoryList:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_OrderHistory_List_CFT.zip
+      FunctionName: "KorDev_Event_Admin_OrderHistory_List_CFT"
+      Description: "KorDev_Event_Lambda_40 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/order-history-list
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminOrderHistoryDetail:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_OrderHistory_Detail_CFT.zip
+      FunctionName: "KorDev_Event_Admin_OrderHistory_Detail_CFT"
+      Description: "KorDev_Event_Lambda_41 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/order-history-detail
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminReturnHistoryList:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_ReturnHistory_List_CFT.zip
+      FunctionName: "KorDev_Event_Admin_ReturnHistory_List_CFT"
+      Description: "KorDev_Event_Lambda_42 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/return-history-list
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminReturnHistoryDetail:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_ReturnHistory_Detail_CFT.zip
+      FunctionName: "KorDev_Event_Admin_ReturnHistory_Detail_CFT"
+      Description: "KorDev_Event_Lambda_43 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/return-history-detail
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventBatchHR:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_HR_Schedule_CFT.zip
+      FunctionName: "KorDev_Event_Admin_HR_Schedule_CFT"
+      Description: "KorDev_Event_Lambda_44 - Batch"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Sch:
+          Type: Schedule
+          Properties:
+            Schedule: cron(0 14 * * ? *)
+            Name: KorDev_Event_Admin_HR_Schedule_CFT
+            Description: EventAdmin Jade HR KST daily 23h
+            Input: '{}'
+            Enabled: true
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevNutriliteA7070Glister:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Nutrilite_A7070_Glister_CFT.zip
+      FunctionName: "KorDev_Event_Nutrilite_A7070_Glister_CFT"
+      Description: "KorDev_Event_Lambda_45 - Event_Nutrilite_A7070_Glister"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /nutrilite/a7070-glister
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  EventCouponSysGetCouponInfo:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Coupon_Sys_GetCouponInfo_CFT.zip
+      FunctionName: "KorDev_Event_Coupon_Sys_GetCouponInfo_CFT"
+      Description: "KorDev_Event_Lambda_46 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/couponsys_getcouponinfo
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  EventCouponSysUseCoupon:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Coupon_Sys_Use_Coupon_CFT.zip
+      FunctionName: "KorDev_Event_Coupon_Sys_Use_Coupon_CFT"
+      Description: "KorDev_Event_Lambda_47 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/couponsys_usecoupon
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  EventCouponSysUserUpload:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Coupon_Sys_User_Upload_CFT.zip
+      FunctionName: "KorDev_Event_Coupon_Sys_User_Upload_CFT"
+      Description: "KorDev_Event_Lambda_48 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/couponsys_userupload
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+          BUCKET_NAME: event-admin.dev.amway.co.kr
+          S3_OBJ_PATH: https://event-admin.dev.amway.co.kr/
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  EventCouponSysGetCoupons:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Coupon_Sys_GetCoupons_CFT.zip
+      FunctionName: "KorDev_Event_Coupon_Sys_GetCoupons_CFT"
+      Description: "KorDev_Event_Lambda_49 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/couponsys_getcoupons
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  EventCouponSysUserUploadConfirm:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Coupon_Sys_User_Upload_Confirm_CFT.zip
+      FunctionName: "KorDev_Event_Coupon_Sys_User_Upload_Confirm_CFT"
+      Description: "KorDev_Event_Lambda_50 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/couponsys_userupload_confirm
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  EventCouponSysAdminUsedTotal:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Coupon_Sys_AdminUsedTotal_CFT.zip
+      FunctionName: "KorDev_Event_Coupon_Sys_AdminUsedTotal_CFT"
+      Description: "KorDev_Event_Lambda_51 - Admin"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/couponsys_admintotal
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevArtistryMakeover:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Artistry_Makeover_CFT.zip
+      FunctionName: "KorDev_Event_Artistry_Makeover_CFT"
+      Description: "KorDev_Event_Lambda_46 - Event_Artistry_Makeover_CFT"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /artistry/makeover
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevArtistryMakeoverCode:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Artistry_Makeover_Code_CFT.zip
+      FunctionName: "KorDev_Event_Artistry_Makeover_Code_CFT"
+      Description: "KorDev_Event_Lambda_46 - Event_Artistry_Makeover_Code_CFT"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /artistry/makeover/code
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+  
+  # Event_WouldURide_Session_Reservation_CFT
+  KorDevWouldURideSessionReservation:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_WouldURide_Session_Reservation_CFT.zip
+      FunctionName: "KorDev_Event_WouldURide_Session_Reservation_CFT"
+      Description: "KorDev_Event_Lambda_54 - Event_WouldURide_Session_Reservation_CFT"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /wouldUride-event/reservation
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  # Event_WouldURide_ValidAbo_CFT
+  KorDevWouldURideValidAbo:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_WouldURide_ValidAbo_CFT.zip
+      FunctionName: "KorDev_Event_WouldURide_ValidAbo_CFT"
+      Description: "KorDev_Event_Lambda_54 - Event_WouldURide_ValidAbo_CFT"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /wouldUride-event/valid/abo
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  # Event_WouldURide_Session_List_CFT
+  KorDevWouldURideSessionList:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_WouldURide_Session_List_CFT.zip
+      FunctionName: "KorDev_Event_WouldURide_Session_List_CFT"
+      Description: "KorDev_Event_Lambda_54 - Event_WouldURide_Session_List_CFT"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /wouldUride-event/sessions
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminNCAReport:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.10
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_NCA_Report_CFT.zip
+      FunctionName: "KorDev_Event_Admin_NCA_Report_CFT"
+      Description: "KorDev_Event_Lambda_57 - Event_Admin_NCA_Report_CFT"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/nca-report
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevCommonCountry:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_CommonAPI_CountryCodeService_CFT.zip
+      FunctionName: "KorDev_Event_CommonAPI_CountryCodeService_CFT"
+      Description: "KorDev_Event_Lambda_54 - Event_CommonAPI_CountryCodeService_CFT"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Sch:
+          Type: Schedule
+          Properties:
+            Schedule: cron(0 6 * * ? *)
+            Name: KorDev_Event_Common_Country_Sch
+            Description: GO KR Country API
+            Input: '{}'
+            Enabled: true
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevSurveyCode:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Survey_Code_CFT.zip
+      FunctionName: "KorDev_Event_Survey_Code_CFT"
+      Description: "KorDev_Event_Lambda_55 - Event_Survey_Code_CFT"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /survey/code
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminNCAReportDownload:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.11
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_NCA_Report_Download_CFT.zip
+      FunctionName: "KorDev_Event_Admin_NCA_Report_Download_CFT"
+      Description: "KorDev_Event_Lambda_58 - Event_Admin_NCA_Report_Download_CFT"
+      MemorySize: 1024
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/nca-report/download
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminNCAReportExcel:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.11
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_NCA_Report_Excel_CFT.zip
+      FunctionName: "KorDev_Event_Admin_NCA_Report_Excel_CFT"
+      Description: "KorDev_Event_Lambda_58 - Event_Admin_NCA_Report_Excel_CFT"
+      MemorySize: 1024
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/nca-report/excel
+            Method: GET
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevMyproteinTestInfo:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Myprotein_Test_Info_CFT.zip
+      FunctionName: "KorDev_Event_Myprotein_Test_Info_CFT"
+      Description: "KorDev_Event_Lambda_60 - Event_Myprotein_Test_Info_CFT"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /myprotein-test/info/create
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+
+  KorDevAmwCaseMaster:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_TGS_AMW_IF_R_CASE_MST_CFT.zip
+      FunctionName: "KorDev_Event_TGS_AMW_IF_R_CASE_MST_CFT"
+      Description: "KorDev_Event_Lambda_61 - Event_TGS_AMW_IF_R_CASE_MST_CFT"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /amw/case
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevAmwSerialMaster:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_TGS_AMW_SERIAL_MST_CFT.zip
+      FunctionName: "KorDev_Event_TGS_AMW_SERIAL_MST_CFT"
+      Description: "KorDev_Event_Lambda_62 - Event_TGS_AMW_SERIAL_MST_CFT"
+      MemorySize: 128
+      Timeout: 300
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /amw/serial
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminTradeInReg:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Trade_In_Reg_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Trade_In_Reg_CFT"
+      Description: "KorDev_Event_Lambda_71 - Event_Admin_Trade_In_Reg_CFT"
+      MemorySize: 128
+      Timeout: 60
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/trade-in/reg
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminTradeInList:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Trade_In_List_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Trade_In_List_CFT"
+      Description: "KorDev_Event_Lambda_72 - KorDev_Event_Admin_Trade_In_List_CFT"
+      MemorySize: 128
+      Timeout: 60
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/trade-in/list
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminTradeInCancel:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Trade_In_Cancel_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Trade_In_Cancel_CFT"
+      Description: "KorDev_Event_Lambda_73 - KorDev_Event_Admin_Trade_In_Cancel_CFT"
+      MemorySize: 128
+      Timeout: 60
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/trade-in/cancel
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminTradeInAccountInfo:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Trade_In_Account_Info_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Trade_In_Account_Info_CFT"
+      Description: "KorDev_Event_Lambda_74 - KorDev_Event_Admin_Trade_In_Account_Info_CFT"
+      MemorySize: 128
+      Timeout: 60
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/trade-in/account-info
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  KorDevEventAdminTradeInCouponList:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: s3://kor-dev-deploy/KorDev_Event_Lambda/Event_Admin_Trade_In_Coupon_List_CFT.zip
+      FunctionName: "KorDev_Event_Admin_Trade_In_Coupon_List_CFT"
+      Description: "KorDev_Event_Lambda_75 - KorDev_Event_Admin_Trade_In_Coupon_List_CFT"
+      MemorySize: 128
+      Timeout: 60
+      Role: "arn:aws:iam::314757280827:role/KorDevEventLambda"
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /event-admin/trade-in/coupon-list
+            Method: POST
+            RestApiId:
+              Ref: ApiGatewayApi
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-08753b1ac58820243
+        SubnetIds:
+          - subnet-eb8f5e82
+          - subnet-11c2d35b
+      Environment:
+        Variables:
+          ENV: dev
+      Tags:
+        Environment: Preprod
+        ApplicationID: APP3151108
+
+  libs:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: KorDev_Event_Module
+      Description: KorDev_Event_Layer
+      ContentUri: s3://kor-dev-deploy/KorDev_Event_Lambda/layers.zip
+      CompatibleRuntimes:
+        - python3.11
+        - python3.10
+        - python3.9
+        - python3.8
+        - python3.7
+        - python3.6
+
+  ApiGatewayApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      # Allows www.example.com to call these APIs
+      # SAM will automatically add AllowMethods with a list of methods for this API
+      Cors: "'*'"
+      DefinitionBody: # Pull in an OpenApi definition from S3
+        "Fn::Transform":
+          Name: "AWS::Include"
+          # Replace "bucket" with your bucket name
+          Parameters:
+            Location: s3://kor-dev-deploy/KorDev_Event_Lambda/dev.swagger.yml
+      EndpointConfiguration: REGIONAL
+      StageName: "v2"
