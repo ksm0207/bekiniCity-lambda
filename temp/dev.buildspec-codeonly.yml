@@ -21,9 +21,9 @@ phases:
 
       ###### 01 Lambda Deploy #######
       - echo "deploying Lambda"
-      - aws lambda update-function-code --function-name KorTest_CFT --s3-bucket $S3_BUCKET_NAME --s3-key $S3_FOLDER_NAME/FirstApp_CFT.zip
+      - aws lambda update-function-code --function-name TestApp_CFT --s3-bucket $S3_BUCKET_NAME --s3-key $S3_FOLDER_NAME/FirstApp_CFT.zip
       - sleep 25
-      - aws lambda update-function-configuration --function-name KorTest_CFT --layers arn:aws:lambda:ap-northeast-2:314757280827:layer:KorDev_Event_Module:$LATESTLAYERVERSION
+      - aws lambda update-function-configuration --function-name TestApp_CFT --layers arn:aws:lambda:ap-northeast-2:314757280827:layer:KorDev_Event_Module:$LATESTLAYERVERSION
       - echo "deploy done"
 
       # ####### Layer Old Version Delete #######
