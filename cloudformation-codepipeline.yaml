@@ -1,0 +1,91 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS CodePipeline을 CloudFormation으로 생성 (기존 IAM Role 사용)
+
+Parameters:
+  GitHubOwner:
+    Type: String
+    Default: "ksm0207"
+    Description: "GitHub 사용자명 또는 조직명"
+
+  GitHubRepo:
+    Type: String
+    Default: "bekiniCity-lambda"
+    Description: "GitHub 리포지토리 이름"
+
+  GitHubBranch:
+    Type: String
+    Default: "dev"
+    Description: "배포할 브랜치"
+
+  GitHubOAuthToken:
+    Type: String
+    NoEcho: true
+    Description: "GitHub OAuth 토큰 (CodePipeline에서 사용)"
+
+  CloudFormationExecutionRoleArn:
+    Type: String
+    Description: "CloudFormation이 사용할 IAM Role ARN"
+    Default: "arn:aws:iam::772776933351:role/CloudFormationExecutionRole"  # IAM 역할 ARN을 여기에 입력
+
+Resources:
+  # 🚀 S3 Bucket (빌드 아티팩트 저장소)
+  PipelineArtifactsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "cloud-formation-lambda-bucket-${AWS::AccountId}"
+
+  # 🚀 AWS CodePipeline (자동화된 배포 파이프라인)
+  MyCodePipeline:
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      Name: MyLambdaPipeline
+      RoleArn: !Ref CloudFormationExecutionRoleArn  # ✅ 기존 IAM Role 사용
+      ArtifactStore:
+        Type: S3
+        Location: !Ref PipelineArtifactsBucket
+      Stages:
+        - Name: Source
+          Actions:
+            - Name: GitHubSource
+              ActionTypeId:
+                Category: Source
+                Owner: ThirdParty
+                Provider: GitHub
+                Version: "1"
+              Configuration:
+                Owner: !Ref GitHubOwner
+                Repo: !Ref GitHubRepo
+                Branch: !Ref GitHubBranch
+                OAuthToken: !Ref GitHubOAuthToken
+              OutputArtifacts:
+                - Name: SourceOutput
+
+        - Name: Build
+          Actions:
+            - Name: BuildLambda
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Provider: CodeBuild
+                Version: "1"
+              InputArtifacts:
+                - Name: SourceOutput
+              OutputArtifacts:
+                - Name: BuildOutput
+              Configuration:
+                ProjectName: "bekiniCity-lambda"
+
+        - Name: Deploy
+          Actions:
+            - Name: DeployLambda
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Provider: Lambda
+                Version: "1"
+              Configuration:
+                FunctionName: "lambda_function"
+                S3Bucket: !Ref PipelineArtifactsBucket
+                S3ObjectKey: "lambda_function.zip"
+              InputArtifacts:
+                - Name: BuildOutput
