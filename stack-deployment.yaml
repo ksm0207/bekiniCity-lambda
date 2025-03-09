@@ -1,0 +1,5 @@
+StackName: LambdaStack
+TemplatePath: stack-template.yaml
+Parameters:
+  S3Bucket: "cloud-formation-lambda-bucket"
+  S3Key: "lambda-code.zip"
